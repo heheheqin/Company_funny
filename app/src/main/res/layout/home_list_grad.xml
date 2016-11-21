@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout style="@style/home_jiu_relativelayout">
+            <ImageView
+                android:id="@+id/xinfang"
+                style="@style/home_jiu_relative_image"
+                android:src="@drawable/home_but_xinfang_select" />
+            <TextView
+                style="@style/home_jiu_relative_text"
+                android:layout_below="@id/xinfang"
+                android:text="新房" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/home_jiu_relativelayout">
+            <ImageView
+                android:id="@+id/ershou"
+                style="@style/home_jiu_relative_image"
+                android:src="@drawable/home_but_ershou_select" />
+            <TextView
+                style="@style/home_jiu_relative_text"
+                android:layout_below="@id/ershou"
+                android:text="二手房" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/home_jiu_relativelayout">
+            <ImageView
+                android:id="@+id/zufang"
+                style="@style/home_jiu_relative_image"
+                android:src="@drawable/home_but_zufang_select" />
+            <TextView
+                style="@style/home_jiu_relative_text"
+                android:layout_below="@id/zufang"
+                android:text="租房" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/home_jiu_relativelayout">
+            <ImageView
+                android:id="@+id/zixun"
+                style="@style/home_jiu_relative_image"
+                android:src="@drawable/home_but_zixun_select" />
+            <TextView
+                style="@style/home_jiu_relative_text"
+                android:layout_below="@id/zixun"
+                android:text="资讯" />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<!--在这里加上了对底部对距离属性-->
+        <RelativeLayout style="@style/home_jiu_relativelayout2">
+            <ImageView
+                android:id="@+id/dazhe"
+                style="@style/home_jiu_relative_image"
+                android:src="@drawable/home_but_youhui_select" />
+            <TextView
+                style="@style/home_jiu_relative_text"
+                android:layout_below="@id/dazhe"
+                android:text="打折优惠" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/home_jiu_relativelayout">
+            <ImageView
+                android:id="@+id/zuixin"
+                style="@style/home_jiu_relative_image"
+                android:src="@drawable/home_but_kaipan_select" />
+            <TextView
+                style="@style/home_jiu_relative_text"
+                android:layout_below="@id/zuixin"
+                android:text="最新开盘" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/home_jiu_relativelayout">
+            <ImageView
+                android:id="@+id/fangdaijisuan"
+                style="@style/home_jiu_relative_image"
+                android:src="@drawable/home_but_jisuan_select" />
+            <TextView
+                style="@style/home_jiu_relative_text"
+                android:layout_below="@id/fangdaijisuan"
+                android:text="房贷计算" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/home_jiu_relativelayout">
+            <ImageView
+                android:id="@+id/gengduo"
+                style="@style/home_jiu_relative_image"
+                android:src="@drawable/home_but_gengduo_select" />
+            <TextView
+
+                style="@style/home_jiu_relative_text"
+                android:layout_below="@id/gengduo"
+                android:text="更多" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

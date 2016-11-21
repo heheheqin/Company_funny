@@ -21,14 +21,14 @@ public class WelcomActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //判断是狗屎第一次启动，如果是a第一个跳转到引导界面
+                //判断是第一次启动，如果是a第一个跳转到引导界面
                 if (SharedUtils.isFirstRun(WelcomActivity.this)) {
                     Intent intent = new Intent(WelcomActivity.this, SplashActivity.class);
                     startActivity(intent);
                 }else {
-                    //不是第一个启动天赚到主界面
-                    Intent intent = new Intent(WelcomActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    //不是第一个启动跳转到主界面
+                    Intent intent1 = new Intent(WelcomActivity.this, com.dream.will.company_funny.ui.MainActivity.class);
+                    startActivity(intent1);
                 }
                 finish();
             }

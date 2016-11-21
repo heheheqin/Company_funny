@@ -32,7 +32,9 @@ public class SharedUtils {
      */
     public  static  void saveFirstRun(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE);
-        sharedPreferences.edit().putBoolean(FIRST_RUN,false).commit();
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean(FIRST_RUN,false);
+        edit.commit();
     }
 
 

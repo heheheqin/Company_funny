@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_zixun_pressed" />
+
+    <TextView
+        android:id="@+id/item_text_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_image"
+        android:layout_toRightOf="@id/item_image"
+        android:paddingTop="2dp"
+        android:text="我的Q币"
+        android:textColor="@color/mine_item_text"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/item_text_msg"
+        android:layout_below="@id/item_text_msg"
+        android:paddingTop="4dp"
+        android:text="每天最新热点资讯推荐"
+        android:textColor="@color/message_item_text"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignLeft="@id/item_text_msg"
+        android:layout_below="@id/item_text"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/message_item_line" />
+
+
+</RelativeLayout>

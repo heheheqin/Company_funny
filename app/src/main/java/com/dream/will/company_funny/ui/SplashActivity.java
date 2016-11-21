@@ -1,13 +1,12 @@
 package com.dream.will.company_funny.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 
 import com.dream.will.company_funny.R;
@@ -28,6 +27,7 @@ public class SplashActivity extends AppCompatActivity {
     };
     private ViewPager splashViewPager;
     private CircleIndicator dotLayout;
+    private boolean isLeftScroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +64,58 @@ public class SplashActivity extends AppCompatActivity {
 
         //设置ViewPager动画  参数二  页面切换接口
         splashViewPager.setPageTransformer(true, new MyTrands());
+        splashViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                //根据state进行判断
+                //如果是手指滑动状态，并互动界面时最后一页
+                switch (state) {
+                    //滑动
+                    case ViewPager.SCROLL_STATE_DRAGGING: {
+                        isLeftScroll = false;
+                    }
+                    break;
+                    //停止
+                    case ViewPager.SCROLL_STATE_IDLE: {
+                        //最后一页时。滑动跳转
+                        int currentItem = splashViewPager.getCurrentItem();
+                        if (!isLeftScroll&&currentItem==splashViewPager.getAdapter().getCount()-1){
+                            goMainActivity();
+                        }
+                        isLeftScroll = false;
+                    }
+                    break;
+                    //惯性
+                    case ViewPager.SCROLL_STATE_SETTLING: {
+                        isLeftScroll = true;
+                    }
+                    break;
+                }
+            }
+        });
 
     }
+
+    public void skip(View c) {
+        goMainActivity();
+    }
+
+    private void goMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     class MyTrands implements ViewPager.PageTransformer {
 
@@ -78,7 +128,7 @@ public class SplashActivity extends AppCompatActivity {
             //把page --->ViewGroup
             //遍历page 拿到三个做动画的ImageView
             //根据position设置view的属性
-            float transx = page.getWidth()*position;
+            float transx = page.getWidth() * position;
             for (int i = 0; i < viewId.length; i++) {
                 View view = page.findViewById(viewId[i]);
                 L.d("position=" + position);
@@ -89,10 +139,5 @@ public class SplashActivity extends AppCompatActivity {
                 transx *= 4f;
             }
         }
-    }
-
-
-    public  void skip(View c){
-
     }
 }
