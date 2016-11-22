@@ -1,5 +1,6 @@
 package com.dream.will.company_funny.fragment;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.utils.L;
@@ -21,7 +23,8 @@ import com.dream.will.company_funny.utils.L;
 public class DiscoverFragment extends Fragment {
     View view;
     WebView webView;
-
+    ImageView iv;
+    AnimationDrawable anim;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,10 @@ public class DiscoverFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         webView = (WebView) view.findViewById(R.id.webView);
+        //设置动画
+        iv = (ImageView) view.findViewById(R.id.imageView);
+        anim = (AnimationDrawable) iv.getBackground();
+        anim.start();
         webView.getSettings().getJavaScriptEnabled();
         //小视频浏览优化 保证对PC等宽页面能良好显示
         webView.getSettings().setUseWideViewPort(true);
@@ -60,6 +67,8 @@ public class DiscoverFragment extends Fragment {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 //                ptrFrame.refreshComplete();
+                anim.stop();
+                iv.setVisibility(View.GONE);
             }
         });
         //加载网址
