@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/guide_background"
+    android:background="@drawable/page_start_bk_480x800"
     tools:context="com.dream.will.company_funny.ui.WelcomActivity$MainActivity">
 
     <ImageView

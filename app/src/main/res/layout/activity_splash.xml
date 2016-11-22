@@ -3,15 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/page_start_bk_480x800"
     android:padding="-10dp">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="-100dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/guide_background" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/splash_viewPager"
