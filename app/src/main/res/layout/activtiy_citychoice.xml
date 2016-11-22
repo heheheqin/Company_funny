@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="13">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height"
+        android:background="@color/select"
+        >
+
+        <TextView
+            android:id="@+id/action_title"
+            android:text="选择城市"
+            style="@style/title_text_style" />
+
+        <Button
+            android:text="取消"
+            android:textColor="@color/white"
+            android:layout_marginRight="10dp"
+            android:background="@color/btn_cancel_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <!--搜索-->
+    <LinearLayout
+        android:background="@color/normal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height"/>
+    <!--头部悬停控件-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/stickyListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -7,8 +7,10 @@
     <color name="select">#1db3d2</color>
     <color name="normal">#808687</color>
     <color name="white">#fff</color>
-    <color name="mine_item_text">#000</color>
+    <color name="black">#000</color>
     <color name="message_item_text">#999</color>
     <color name="message_item_line">#ccc</color>
     <color name="home_find_bg_color">#1fa6c2</color>
+    <color name="btn_cancel_bg">#61c5d6</color>
+    <color name="list_cityChoice_title">#dff0f2</color>
 </resources>

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.adapter.MessageListAdapter;
 import com.dream.will.company_funny.bean.MessageListBean;
+import com.dream.will.company_funny.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,13 @@ public class MessageFragment extends Fragment {
     };
 
     List<MessageListBean> data;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        L.d("MessageFragment --- onCreate");
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

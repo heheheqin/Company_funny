@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.adapter.MineListAdapter;
 import com.dream.will.company_funny.bean.MineListBean;
+import com.dream.will.company_funny.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     };
 
     List<MineListBean> data;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        L.d("MineFragment --- onCreate");
+    }
 
     @Nullable
     @Override

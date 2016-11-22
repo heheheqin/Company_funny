@@ -5,19 +5,16 @@
     android:weightSum="14"
     android:orientation="vertical">
 
-   <LinearLayout
-       android:background="@color/select"
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:gravity="center"
-       android:layout_weight="1">
-       <TextView
-           android:text="消息"
-           android:textColor="@color/white"
-           android:textSize="22sp"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content" />
-   </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height"
+        android:background="@color/select"
+        >
+        <TextView
+            android:id="@+id/action_title"
+            android:text="消息"
+            style="@style/title_text_style" />
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/msg_listView"

@@ -19,7 +19,7 @@
         android:layout_toRightOf="@id/item_image"
         android:paddingTop="2dp"
         android:text="我的Q币"
-        android:textColor="@color/mine_item_text"
+        android:textColor="@color/black"
         android:textSize="17sp" />
 
     <TextView

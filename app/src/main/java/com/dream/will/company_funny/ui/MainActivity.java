@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN) {
+
             if ((System.currentTimeMillis() - exitTime) > 2000) {
                 Toast.makeText(getApplicationContext(), "再按一次返回", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();

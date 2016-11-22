@@ -4,8 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="发现" />
+        android:layout_height="@dimen/head_height"
+        android:background="@color/select"
+        >
+        <TextView
+            android:id="@+id/action_title"
+            android:text="发现"
+            style="@style/title_text_style" />
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13" />
 </LinearLayout>
