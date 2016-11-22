@@ -1,6 +1,10 @@
 package com.dream.will.company_funny.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.adapter.CityChoiceAdapter;
@@ -9,6 +13,8 @@ import com.dream.will.company_funny.inter.ICityChoice;
 import com.dream.will.company_funny.utils.APIManager;
 import com.dream.will.company_funny.utils.CityJsonUtils;
 import com.dream.will.company_funny.utils.L;
+import com.dream.will.company_funny.widget.SlideLetterView;
+import com.dream.will.company_funny.widget.SlideView;
 
 import org.json.JSONException;
 
@@ -22,11 +28,29 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-public class CityChoiceActivity extends BaseNoActionBarActivity {
+public class CityChoiceActivity extends BaseNoActionBarActivity implements SlideView.SlideClickCallback {
 
+    private static final int YES = 419;
+    private static final int NO = 300;
     List<CityBean> data;
-    private StickyListHeadersListView stickyListView;
     CityChoiceAdapter adapter;
+    int currentPosition = -1;
+    private StickyListHeadersListView stickyListView;
+    private SlideView slideView;
+    private SlideLetterView leterView;
+    //清除文本消息
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case YES: {
+                    leterView.setVisibility(View.GONE);
+                }
+                break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +58,7 @@ public class CityChoiceActivity extends BaseNoActionBarActivity {
         setContentView(R.layout.activtiy_citychoice);
         initView();
         initData();
-        adapter = new CityChoiceAdapter(this,data);
+        adapter = new CityChoiceAdapter(this, data);
         stickyListView.setAdapter(adapter);
         L.d("CityChoiceActivity");
         getCityData();
@@ -93,5 +117,45 @@ public class CityChoiceActivity extends BaseNoActionBarActivity {
 
     private void initView() {
         stickyListView = (StickyListHeadersListView) findViewById(R.id.stickyListView);
+        slideView = (SlideView) findViewById(R.id.slideView);
+        leterView = (SlideLetterView) findViewById(R.id.leterView);
+        //设置  互动字母监听
+        slideView.setOnSlideClike(this);
+    }
+
+    /**
+     * 侧滑是回调
+     *
+     * @param position
+     * @param str
+     */
+    @Override
+    public void slideOnClick(int position, String str) {
+        //显示leterView控件
+        //设置文本
+        leterView.setVisibility(View.VISIBLE);
+        leterView.setText(str);
+        //从data集合中遍历到第一条数据以str开图数据位置
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getLetter().equals(str)) {
+                //设置lsitView位置
+                stickyListView.setSelection(i);
+                //找到符合条件数据返回
+                return;
+            }
+        }
+        //设置   文本在一秒钟之后消失  首先清除消息后面发送
+        handler.removeMessages(YES);
+        Message m = Message.obtain();
+        m.what = YES;
+        handler.sendMessageDelayed(m, 1000);
+
+
+    }
+
+    //
+    @Override
+    public void slideUp() {
+        leterView.setVisibility(View.GONE);
     }
 }
