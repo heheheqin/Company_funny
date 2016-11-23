@@ -111,7 +111,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void goMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, CityChoiceActivity.class);
         startActivity(intent);
         finish();
     }

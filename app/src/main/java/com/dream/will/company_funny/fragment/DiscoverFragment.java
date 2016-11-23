@@ -1,6 +1,8 @@
 package com.dream.will.company_funny.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.dream.will.company_funny.R;
+import com.dream.will.company_funny.ui.DiscoverActivity;
 import com.dream.will.company_funny.utils.L;
 
 /**
@@ -61,6 +65,7 @@ public class DiscoverFragment extends Fragment {
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
             }
+
         });
         webView.setWebViewClient(new WebViewClient(){
             @Override//网页加载结束回调
@@ -70,10 +75,23 @@ public class DiscoverFragment extends Fragment {
                 anim.stop();
                 iv.setVisibility(View.GONE);
             }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return super.shouldOverrideUrlLoading(view, request);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Intent intent = new Intent(getActivity(), DiscoverActivity.class);
+                intent.putExtra("url",url);
+                startActivity(intent);
+                return super.shouldOverrideUrlLoading(view, url);
+            }
         });
         //加载网址
         webView.loadUrl("http://m.db.house.qq.com/index.php?mod=appkft&act=discover&cityid=4&rf=kanfang");
-
+//        webView.
     }
     public  WebView getWebview(){
         return webView;

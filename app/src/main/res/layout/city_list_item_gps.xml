@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:src="@drawable/ic_group_detail_map"
+        android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/item_text"
+        android:text="GPS定位城市:"
+        style="@style/city_list_head_gps_textview" />
+    <TextView
+        android:text="深圳"
+        android:id="@+id/item_city"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        style="@style/city_list_head_gps_textview" />
+
+
+
+</LinearLayout>

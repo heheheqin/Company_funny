@@ -28,8 +28,10 @@
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/myAppTheme" />
-        <activity android:name=".ui.CityChoiceActivity"
-            android:theme="@style/myAppTheme"/>
+        <activity
+            android:name=".ui.CityChoiceActivity"
+            android:theme="@style/myAppTheme" />
+        <activity android:name=".ui.DiscoverActivity"></activity>
     </application>
 
 </manifest>

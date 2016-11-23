@@ -13,6 +13,6 @@
         android:textSize="15sp"
         android:textColor="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="45dp" />
+        android:layout_height="@dimen/city_item_height" />
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.adapter.MessageListAdapter;
+import com.dream.will.company_funny.adapter.MessageListAdapterC;
 import com.dream.will.company_funny.bean.MessageListBean;
 import com.dream.will.company_funny.utils.L;
 
@@ -66,7 +67,8 @@ public class MessageFragment extends Fragment {
         for (int i = 0; i < imageId.length; i++) {
             data.add(new MessageListBean(imageId[i], title[i],tinyTitle[i]));
         }
-        listView.setAdapter(new MessageListAdapter(getActivity(),data));
+//        listView.setAdapter(new MessageListAdapter(getActivity(),data));
+        listView.setAdapter(new MessageListAdapterC(getActivity(),data,R.layout.messge_list_item));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.adapter.MineListAdapter;
+import com.dream.will.company_funny.adapter.MineListAdapterC;
 import com.dream.will.company_funny.bean.MineListBean;
 import com.dream.will.company_funny.utils.L;
 
@@ -72,7 +73,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         for (int i = 0; i < imageId.length; i++) {
             data.add(new MineListBean(imageId[i], title[i]));
         }
-        listView.setAdapter(new MineListAdapter(getActivity(),data));
+//        listView.setAdapter(new MineListAdapter(getActivity(),data));
+        listView.setAdapter(new MineListAdapterC(getActivity(),data,R.layout.mine_list_item));
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

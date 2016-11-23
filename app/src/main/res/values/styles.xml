@@ -50,4 +50,12 @@
         <item name="android:textSize">@dimen/head_text_size</item>
     </style>
 
+    <style name="city_list_head_gps_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/message_item_text</item>
+        <item name="android:layout_height">@dimen/city_item_height</item>
+    </style>
+
 </resources>

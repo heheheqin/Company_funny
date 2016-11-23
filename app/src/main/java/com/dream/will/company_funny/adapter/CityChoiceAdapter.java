@@ -1,6 +1,7 @@
 package com.dream.will.company_funny.adapter;
 
 import android.content.Context;
+import android.content.SearchRecentSuggestionsProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.bean.CityBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
@@ -23,11 +25,18 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 public class CityChoiceAdapter extends BaseAdapter implements StickyListHeadersAdapter {
     List<CityBean> data;
+    List<CityBean> allData;
     LayoutInflater inflater;
 
     public CityChoiceAdapter(Context context, List<CityBean> data) {
         inflater = LayoutInflater.from(context);
         this.data = data;
+        this.allData = new ArrayList<>();
+    }
+
+    public  void setAllData(List<CityBean> data){
+        allData.clear();
+        allData.addAll(data);
     }
     ///////////////////////////////////////////////////////////////////////////
     // StickyListHeadersAdapter
@@ -111,5 +120,21 @@ public class CityChoiceAdapter extends BaseAdapter implements StickyListHeadersA
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // 检索方法  把结果设置给自己
+    ///////////////////////////////////////////////////////////////////////////
+    public  void search(String strSearch){
+        data.clear();
+        if (strSearch == null|| strSearch.length() == 0){
+            data.addAll(allData);
+        }else {
+            for (CityBean cityBean : allData) {
+                if (cityBean.getCityname().contains(strSearch)) {
+                    data.add(cityBean);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 
 }

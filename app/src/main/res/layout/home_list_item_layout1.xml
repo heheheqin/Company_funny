@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_group_detail_map" />
+
+    <TextView
+        android:id="@+id/item_text_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_image"
+        android:layout_toRightOf="@id/item_image"
+        android:maxLines="1"
+        android:paddingTop="2dp"
+        android:text="我的Q币"
+        android:paddingRight="8dp"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/item_text_msg"
+        android:layout_below="@id/item_text_msg"
+        android:maxLines="2"
+        android:paddingTop="4dp"
+        android:paddingRight="8dp"
+        android:text="每天最新热点资讯推荐"
+        android:textColor="@color/message_item_text"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>

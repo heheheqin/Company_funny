@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:onClick="closeInputMethed"
     android:weightSum="13">
 
     <RelativeLayout
@@ -17,6 +18,7 @@
             android:text="选择城市" />
 
         <Button
+            android:onClick="cancelCity"
             android:layout_width="55dp"
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
@@ -28,6 +30,8 @@
 
     <!--搜索-->
     <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:padding="10dp"
         android:orientation="horizontal"
@@ -45,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
-                android:focusable="false"
+                android:id="@+id/editText"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:background="@null"
@@ -53,6 +57,8 @@
                 android:textColorHint="@color/search_bg_hint"
                 android:layout_height="match_parent" />
             <ImageView
+                android:onClick="cancel"
+                android:id="@+id/editText_cancel"
                 android:paddingRight="15dp"
                 android:src="@drawable/btn_remove_select"
                 android:layout_width="wrap_content"
@@ -64,6 +70,7 @@
     </LinearLayout>
     <!--头部悬停控件-->
     <FrameLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

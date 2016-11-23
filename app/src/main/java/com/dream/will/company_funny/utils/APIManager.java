@@ -19,16 +19,22 @@ public class APIManager {
     public static final String CHOICE_CITY = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&act=kftcitylistnew&channel=71&devid=866500021200250&appname=QQHouse&mod=appkft";
     /**
      * 首页WebView内容
+     * &cityid=%s
      */
-    public static final String FIRST_PAGE_WEBVIEW = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&devid=866500021200250&appname=QQHouse&mod=appkft&act=homepage&channel=71&cityid=%s";
+    public static final String HOME_BANNER = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&devid=866500021200250&appname=QQHouse&mod=appkft&act=homepage&channel=71";
     /**
      * 首页 ListView内容
      *
      * 1)进入时：reqnum=10,pageflag=0,buttonmore=0;
      * 2)点击查看更多时：reqnum=20,pageflag=0,buttonmore=1;
      * 3)刷新时：reqnum=20,pageflag=1,buttonmore=1;
+     *
      */
-    public static final String FIRST_PAGE_LISTVIEW = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&devid=866500021200250&appname=QQHouse&mod=appkft&reqnum=%d&pageflag=%d&act=newslist&channel=71&buttonmore=%d&cityid=%s";
+    public static final String HOUSE_PAGE_FIRST_PAGE_LISTVIEW = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&devid=866500021200250&appname=QQHouse&mod=appkft&reqnum=20&&act=newslist&channel=71";
+    /**
+     * 找新房
+     */
+    public static final String LOOKING_NEW = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&rn=10&order=0&searchtype=normal&devid=866500021200250&page=1&appname=QQHouse&mod=appkft&act=searchhouse&channel=71&";
     /**
      * 资讯详情
      */
@@ -37,10 +43,6 @@ public class APIManager {
      * 资讯评论
      */
     public static final String NEWS_COMMENT = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&devid=866500021200250&appname=QQHouse&mod=appkft&reqnum=20&pageflag=0&act=newscomment&channel=71&targetid=%s";
-    /**
-     * 找新房
-     */
-    public static final String LOOKING_NEWHOUSE = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&rn=10&order=0&searchtype=normal&devid=866500021200250&page=%d&appname=QQHouse&mod=appkft&act=searchhouse&channel=71&cityid=%s";
     /**
      * 找新房 楼盘信息
      */
