@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ public class DiscoverFragment extends Fragment {
     WebView webView;
     ImageView iv;
     AnimationDrawable anim;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,40 +42,54 @@ public class DiscoverFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.discover_fragment_layout, container, false);
-        return view ;
+        return view;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         webView = (WebView) view.findViewById(R.id.webView);
         //设置动画
         iv = (ImageView) view.findViewById(R.id.imageView);
         anim = (AnimationDrawable) iv.getBackground();
         anim.start();
-        webView.getSettings().getJavaScriptEnabled();
-        //小视频浏览优化 保证对PC等宽页面能良好显示
-        webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        //图片自动
-        webView.getSettings().setLoadsImagesAutomatically(true);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+//        webView.getSettings().setBuiltInZoomControls(true);
+//        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+//        webView.getSettings().setSaveFormData(true);
+//        webView.getSettings().getJavaScriptEnabled();
+//        //小视频浏览优化 保证对PC等宽页面能良好显示
+//        webView.getSettings().setUseWideViewPort(true);
+//        webView.getSettings().setLoadWithOverviewMode(true);
+//        //图片自动
+//        webView.getSettings().setLoadsImagesAutomatically(true);
         webView.canGoBack();
-        webView.loadUrl("javascript:window.history.back();");
+//        webView.loadUrl("javascript:window.history.back();");
         //监听
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
             }
 
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+
+            }
         });
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override//网页加载结束回调
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 //                ptrFrame.refreshComplete();
-                anim.stop();
                 iv.setVisibility(View.GONE);
+                anim.stop();
             }
 
             @Override
@@ -84,16 +100,24 @@ public class DiscoverFragment extends Fragment {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Intent intent = new Intent(getActivity(), DiscoverActivity.class);
-                intent.putExtra("url",url);
+                intent.putExtra("url", url);
                 startActivity(intent);
-                return super.shouldOverrideUrlLoading(view, url);
+                L.d("webview---"+url);
+                return true;
             }
         });
+        webView.getSettings().setDisplayZoomControls(false);
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.getSettings().setJavaScriptEnabled(true);
         //加载网址
         webView.loadUrl("http://m.db.house.qq.com/index.php?mod=appkft&act=discover&cityid=4&rf=kanfang");
+
 //        webView.
+//        webView.requestLayout();
     }
-    public  WebView getWebview(){
+
+    public WebView getWebview() {
         return webView;
     }
 }

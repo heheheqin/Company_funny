@@ -58,4 +58,11 @@
         <item name="android:layout_height">@dimen/city_item_height</item>
     </style>
 
+    <style name="ic_broswer_image_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 </resources>

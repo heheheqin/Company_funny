@@ -13,6 +13,7 @@ public class APIManager {
      * 主机地址
      */
     public static final String BASE_URL = "http://ikft.house.qq.com/";
+    public static final String BASE_URL_ZIXUN = "http://m.house.qq.com/a/";
     /**
      * 选择城市
      */

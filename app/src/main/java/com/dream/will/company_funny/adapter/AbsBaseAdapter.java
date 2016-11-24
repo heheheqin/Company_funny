@@ -60,6 +60,7 @@ public abstract class AbsBaseAdapter<T> extends BaseAdapter {
         } else {
             viewHolde = (ViewHolder) convertView.getTag();
         }
+
         bindData(position,viewHolde);
         return convertView;
     }

@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dream.will.company_funny.R;
@@ -233,14 +234,30 @@ public class CityChoiceActivity extends BaseNoActionBarActivity implements Slide
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
        if (SharedUtils.isFirstRun(this)){
+           L.d("citychoies --- sharePre");
            Intent intent =new Intent(this,MainActivity.class);
            startActivity(intent);
            finish();
        }else {
            //获取intent  返回到home界面
            Intent intent= getIntent();
-           intent.putExtra(IntentUtils.KEY_CITYNAME,data.get(position-1).getCityname());
-           intent.putExtra(IntentUtils.KEY_CITYID,data.get(position-1).getCityid());
+           String cityN = null;
+           String cityI = null;
+           if (position == 0){
+               cityN = ((TextView)view.findViewById(R.id.item_city)).getText().toString().trim();
+               for (int i = 0; i < data.size(); i++) {
+                   if (data.get(i).getCityname().equals(cityN)) {
+                       cityI = data.get(i).getCityid();
+                   }
+               }
+           }else {
+               cityN = data.get(position-1).getCityname();
+               cityI = data.get(position-1).getCityid();
+           }
+           L.d("onItemClick+cityId:::"+cityI);
+           L.d("onItemClick+cityName:::"+cityN);
+           intent.putExtra(IntentUtils.KEY_CITYNAME,cityN);
+           intent.putExtra(IntentUtils.KEY_CITYID,cityI);
            setResult(1,intent);
            finish();
        }

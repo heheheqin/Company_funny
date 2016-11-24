@@ -10,29 +10,62 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/head_height"
-        android:background="@color/select"
-        >
+
+        android:background="@color/select">
+
         <ImageView
             android:id="@+id/back"
-            android:src="@drawable/btn_back_normal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_back_normal" />
+
         <TextView
             android:id="@+id/action_title"
-            android:text="标题"
-            style="@style/title_text_style" />
+            style="@style/title_text_style"
+            android:ellipsize="end"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:text="标题" />
+
         <ImageView
             android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:paddingRight="10dp"
-            android:src="@drawable/btn_share_pressed"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:src="@drawable/btn_share_pressed" />
     </RelativeLayout>
 
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_height"
+        android:background="@color/status">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:src="@drawable/ic_broswer_back_normal"
+            style="@style/ic_broswer_image_style" />
+        <ImageView
+            android:id="@+id/next_button"
+            android:src="@drawable/ic_broswer_next_normal"
+            style="@style/ic_broswer_image_style" />
+        <ImageView
+            android:id="@+id/refresh_button"
+            android:src="@drawable/ic_broswer_refresh_normal"
+            style="@style/ic_broswer_image_style" />
+        <ImageView
+            android:id="@+id/close_button"
+            android:src="@drawable/ic_broswer_close_normal"
+            style="@style/ic_broswer_image_style" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>
