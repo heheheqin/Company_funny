@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,18 +16,17 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dream.will.company_funny.R;
-import com.dream.will.company_funny.adapter.AbsBaseAdapter;
 import com.dream.will.company_funny.adapter.AbsBaseAdapter2;
 import com.dream.will.company_funny.bean.HomePageBean;
 import com.dream.will.company_funny.inter.IHomePageList;
 import com.dream.will.company_funny.ui.CityChoiceActivity;
 import com.dream.will.company_funny.ui.DiscoverActivity;
 import com.dream.will.company_funny.ui.DiscoverActivity2;
-import com.dream.will.company_funny.ui.SaoActivity;
 import com.dream.will.company_funny.utils.APIManager;
 import com.dream.will.company_funny.utils.IntentUtils;
 import com.dream.will.company_funny.utils.L;
 import com.dream.will.company_funny.widget.BannerView;
+import com.dream.will.company_funny.widget.GradView;
 import com.dream.will.company_funny.widget.PullRoRefreshHeadView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -40,7 +38,6 @@ import java.util.List;
 
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrUIHandler;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,17 +53,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
     private static final int INTENT_REQUEST_CITY = 914;
     private static final int INTENT_REQUEST_SAO = 915;
     BannerView bannerView;
-    PtrFrameLayout refreash;
+    PtrFrameLayout refresh;
     boolean isMore;
-    int pageflag = 0;  //刷新
-    int buttonmore = 0;  //刷新
+    int pageFlag = 0;  //刷新
+    int buttonMore = 0;  //刷新
     private AbsBaseAdapter2<HomePageBean.DataBean> adapter;
-    private ListView lv;
+    private ListView listView;
     private String cityName;
     private String cityId = "1";
     private View view;
     private TextView localChoice;
     private List<HomePageBean.DataBean> dataBeen;
+//    自定义的 listView视图头部
+    GradView gradView;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,13 +75,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
         //获取数据  两个地方   开始进来到时候  城市改变时候
         bannerView = new BannerView(getActivity());
         dataBeen = new ArrayList<>();
+        initData();
         getData();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.home_fragment_layout, container, false);
         return view;
     }
@@ -91,20 +91,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
         super.onViewCreated(view, savedInstanceState);
         ImageView saoma = (ImageView) view.findViewById(R.id.sao);
         saoma.setOnClickListener(this);
-        refreash = (PtrFrameLayout) view.findViewById(R.id.refresh);
+        initRefresh(view);
+    }
+
+    private void initRefresh(View view) {
+        refresh = (PtrFrameLayout) view.findViewById(R.id.refresh);
         //创建刷新头
         PullRoRefreshHeadView pullRoRefreshHeadView = new PullRoRefreshHeadView(getActivity());
         //添加头
-        refreash.setHeaderView(pullRoRefreshHeadView);
+        refresh.setHeaderView(pullRoRefreshHeadView);
         //添加属性头控件
-        refreash.addPtrUIHandler(pullRoRefreshHeadView);
+        refresh.addPtrUIHandler(pullRoRefreshHeadView);
         //刷新事件
-        refreash.setPtrHandler(new PtrDefaultHandler() {
+        refresh.setPtrHandler(new PtrDefaultHandler() {
             //属性方法
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 //刷新代码
-
                 getData();
             }
 
@@ -115,23 +118,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
                 return super.checkCanDoRefresh(frame, content, header);
             }
         });
-
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         localChoice = (TextView) view.findViewById(R.id.local);
-        lv = (ListView) view.findViewById(R.id.home_listView);
-        View grad = LayoutInflater.from(getActivity()).inflate(R.layout.home_list_grad, null);
+        listView = (ListView) view.findViewById(R.id.home_listView);
+        gradView = new GradView(getActivity());
         localChoice.setOnClickListener(this);
 
-        lv.addHeaderView(bannerView);
-        lv.addHeaderView(grad);
-        lv.setAdapter(adapter);
-        lv.setOnScrollListener(this);
-        lv.setOnItemClickListener(this);
+        listView.addHeaderView(bannerView);
+        listView.addHeaderView(gradView);
+        listView.setAdapter(adapter);
+        listView.setOnScrollListener(this);
+        listView.setOnItemClickListener(this);
         bannerView.setCityId(cityId);
         restorView();
     }
@@ -198,8 +199,41 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
         }
     }
 
+    //切换城市调用方法
     private void getData() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APIManager.BASE_URL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
 
+        IHomePageList iHomePageList = retrofit.create(IHomePageList.class);
+        Call<String> call = iHomePageList.getListContent("0", "0", cityId);
+//        L.d("请求城市："+cityId);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+//                L.d("首页请求成功"+response.body());
+                String body = response.body();
+                //把字符串解析层HomePageBean
+                Gson gson = new Gson();
+                HomePageBean bean = gson.fromJson(body, new TypeToken<HomePageBean>() {
+                }.getType());
+//                dataBeen.clear();
+                dataBeen.addAll(bean.getData());
+                adapter.notifyDataSetChanged();
+                //结束刷新状态
+                refresh.refreshComplete();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                L.d("首页请求失败");
+                refresh.refreshComplete();
+            }
+        });
+    }
+
+    private void initData() {
         adapter = new AbsBaseAdapter2<HomePageBean.DataBean>(getActivity()
                 , dataBeen, R.layout.home_list_item_layout1, R.layout.home_list_item_layout2) {
             @Override
@@ -207,6 +241,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
                 //绑定数据
                 //根据不同类型 知道布局类型加载不同布局
                 HomePageBean.DataBean dataBean = dataBeen.get(position);
+
 //                if (dataBean.getType()==0) {
 //
 //                }
@@ -226,40 +261,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
                 return Integer.valueOf(type);
             }
         };
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIManager.BASE_URL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
-
-        IHomePageList iHomePageList = retrofit.create(IHomePageList.class);
-        Call<String> call = iHomePageList.getListContent("0", "0", cityId);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-//                L.d("首页请求成功"+response.body());
-                String body = response.body();
-                //把字符串解析层HomePageBean
-                Gson gson = new Gson();
-                HomePageBean bean = gson.fromJson(body, new TypeToken<HomePageBean>() {
-                }.getType());
-                dataBeen.clear();
-                dataBeen.addAll(bean.getData());
-                adapter.notifyDataSetChanged();
-                //结束刷新状态
-                refreash.refreshComplete();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                L.d("首页请求失败");
-                refreash.refreshComplete();
-            }
-        });
     }
 
-    //下拉刷新时调用方法
+    //下拉加载时调用方法
     public void getMore() {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -268,7 +272,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
                 .build();
 
         IHomePageList iHomePageList = retrofit.create(IHomePageList.class);
-        Call<String> call = iHomePageList.getListContent(String.valueOf(pageflag), String.valueOf(buttonmore), cityId);
+        Call<String> call = iHomePageList.getListContent(String.valueOf(pageFlag)
+                , String.valueOf(buttonMore), cityId);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -292,8 +297,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         if (scrollState == 0 && isMore) {
-            buttonmore++;
-            L.d("onScrollStateChanged:::" + pageflag);
+            buttonMore++;
+            L.d("onScrollStateChanged:::" + pageFlag);
             getMore();
         }
 
@@ -301,18 +306,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        L.d("firstVisibleItem" + firstVisibleItem);
-        if (firstVisibleItem + visibleItemCount == totalItemCount) {
-            isMore = true;
-        } else {
-            isMore = false;
-        }
+        //滑动到底部时候  设置标志位为true
+        isMore = firstVisibleItem + visibleItemCount == totalItemCount;
     }
     //点击时跳转浏览新闻
     //thumbnail
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent;
+        if (position < 2){
+            return;
+        }
         if(dataBeen.get(position-2).getType().equals("0")){
             intent = new Intent(getActivity(), DiscoverActivity.class);
         }else {

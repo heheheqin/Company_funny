@@ -31,6 +31,7 @@
         android:layout_alignLeft="@id/item_text_msg"
         android:layout_below="@id/item_text_msg"
         android:maxLines="2"
+        android:ellipsize="end"
         android:paddingTop="4dp"
         android:paddingRight="8dp"
         android:text="每天最新热点资讯推荐"

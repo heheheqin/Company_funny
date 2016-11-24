@@ -9,85 +9,108 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout style="@style/home_jiu_relativelayout">
+
             <ImageView
                 android:id="@+id/xinfang"
                 style="@style/home_jiu_relative_image"
                 android:src="@drawable/home_but_xinfang_select" />
+
             <TextView
                 style="@style/home_jiu_relative_text"
                 android:layout_below="@id/xinfang"
                 android:text="新房" />
         </RelativeLayout>
+
         <RelativeLayout style="@style/home_jiu_relativelayout">
+
             <ImageView
                 android:id="@+id/ershou"
                 style="@style/home_jiu_relative_image"
                 android:src="@drawable/home_but_ershou_select" />
+
             <TextView
                 style="@style/home_jiu_relative_text"
                 android:layout_below="@id/ershou"
                 android:text="二手房" />
         </RelativeLayout>
+
         <RelativeLayout style="@style/home_jiu_relativelayout">
+
             <ImageView
                 android:id="@+id/zufang"
                 style="@style/home_jiu_relative_image"
                 android:src="@drawable/home_but_zufang_select" />
+
             <TextView
                 style="@style/home_jiu_relative_text"
                 android:layout_below="@id/zufang"
                 android:text="租房" />
         </RelativeLayout>
+
         <RelativeLayout style="@style/home_jiu_relativelayout">
+
             <ImageView
                 android:id="@+id/zixun"
                 style="@style/home_jiu_relative_image"
                 android:src="@drawable/home_but_zixun_select" />
+
             <TextView
                 style="@style/home_jiu_relative_text"
                 android:layout_below="@id/zixun"
                 android:text="资讯" />
         </RelativeLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-<!--在这里加上了对底部对距离属性-->
+        <!--在这里加上了对底部对距离属性-->
         <RelativeLayout style="@style/home_jiu_relativelayout2">
+
             <ImageView
                 android:id="@+id/dazhe"
                 style="@style/home_jiu_relative_image"
                 android:src="@drawable/home_but_youhui_select" />
+
             <TextView
                 style="@style/home_jiu_relative_text"
                 android:layout_below="@id/dazhe"
                 android:text="打折优惠" />
         </RelativeLayout>
+
         <RelativeLayout style="@style/home_jiu_relativelayout">
+
             <ImageView
                 android:id="@+id/zuixin"
                 style="@style/home_jiu_relative_image"
                 android:src="@drawable/home_but_kaipan_select" />
+
             <TextView
                 style="@style/home_jiu_relative_text"
                 android:layout_below="@id/zuixin"
                 android:text="最新开盘" />
         </RelativeLayout>
+
         <RelativeLayout style="@style/home_jiu_relativelayout">
+
             <ImageView
                 android:id="@+id/fangdaijisuan"
                 style="@style/home_jiu_relative_image"
                 android:src="@drawable/home_but_jisuan_select" />
+
             <TextView
                 style="@style/home_jiu_relative_text"
                 android:layout_below="@id/fangdaijisuan"
                 android:text="房贷计算" />
         </RelativeLayout>
+
         <RelativeLayout style="@style/home_jiu_relativelayout">
+
             <ImageView
                 android:id="@+id/gengduo"
                 style="@style/home_jiu_relative_image"
                 android:src="@drawable/home_but_gengduo_select" />
+
             <TextView
 
                 style="@style/home_jiu_relative_text"
@@ -96,7 +119,41 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/morelinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/home_more_bg">
 
+        <TextView
+            android:id="@+id/lingqbi"
+            android:clickable="true"
+            android:paddingLeft="15dp"
+            android:drawableLeft="@drawable/more_ic_qb"
+            android:text="领Q币"
+            style="@style/moreLinaerstyle" />
+        <TextView
+            android:id="@+id/kanfangtuan"
+            android:clickable="true"
+            android:paddingLeft="10dp"
+            android:drawableLeft="@drawable/more_ic_group"
+            android:text="看房团"
+            style="@style/moreLinaerstyle" />
+        <TextView
+            android:id="@+id/huandai"
+            android:clickable="true"
+            android:drawableLeft="@drawable/more_ic_remind"
+            android:text="还贷提醒"
+            style="@style/moreLinaerstyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/zhuanwei"
+        android:background="@color/home_more_bg"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
 
 
 </LinearLayout>

@@ -16,4 +16,5 @@
     <color name="search_bg">#e2e4e5</color>
     <color name="search_bg_2">#eaecee</color>
     <color name="search_bg_hint">#bac3cc</color>
+    <color name="home_more_bg">#e4eaea</color>
 </resources>
