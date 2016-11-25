@@ -1,20 +1,24 @@
 package com.dream.will.company_funny.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.bean.BannerBean;
 import com.dream.will.company_funny.inter.IHomePageList;
+import com.dream.will.company_funny.ui.Main2Activity;
 import com.dream.will.company_funny.utils.APIManager;
 import com.dream.will.company_funny.utils.L;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerClickListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -33,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 只要设置城市id，就能自动获取数据，得到图片进行轮播
  */
 
-public class BannerView extends FrameLayout {
+public class BannerView extends FrameLayout implements OnBannerClickListener {
 
     Banner banner;
 
@@ -67,6 +71,7 @@ public class BannerView extends FrameLayout {
         //设置指示器位置（当banner模式中有指示器时）
         banner.setIndicatorGravity(BannerConfig.RIGHT);
 //        //banner设置方法全部调用完毕时最后调用
+        banner.setOnBannerClickListener(this);
 //        banner.start();
     }
 
@@ -91,6 +96,7 @@ public class BannerView extends FrameLayout {
                 BannerBean body = response.body();
                 List<BannerBean.DataBean> dataBeen = body.getData() ;
                 for (BannerBean.DataBean dataBean1 : dataBeen) {
+
                     imgUrls.add(dataBean1.getPicurl());
                     titles.add(dataBean1.getTitle());
                 }
@@ -107,6 +113,16 @@ public class BannerView extends FrameLayout {
         });
 
     }
+    //设置banner监听
+    @Override
+    public void OnBannerClick(int position) {
+        L.d("Banner Click::"+position);
+        Toast.makeText(getContext(), "Banner Click::"+position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), Main2Activity.class);
+
+    }
+
+
 
     public class GlideImageLoader extends ImageLoader {
         @Override

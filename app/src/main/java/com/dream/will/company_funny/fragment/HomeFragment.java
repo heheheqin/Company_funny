@@ -22,6 +22,7 @@ import com.dream.will.company_funny.inter.IHomePageList;
 import com.dream.will.company_funny.ui.CityChoiceActivity;
 import com.dream.will.company_funny.ui.DiscoverActivity;
 import com.dream.will.company_funny.ui.DiscoverActivity2;
+import com.dream.will.company_funny.ui.HomeListViewDetailActivity;
 import com.dream.will.company_funny.utils.APIManager;
 import com.dream.will.company_funny.utils.IntentUtils;
 import com.dream.will.company_funny.utils.L;
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
     boolean isMore;
     int pageFlag = 0;  //刷新
     int buttonMore = 0;  //刷新
+    String lastid = null;  //刷新
     private AbsBaseAdapter2<HomePageBean.DataBean> adapter;
     private ListView listView;
     private String cityName;
@@ -207,7 +209,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
                 .build();
 
         IHomePageList iHomePageList = retrofit.create(IHomePageList.class);
-        Call<String> call = iHomePageList.getListContent("0", "0", cityId);
+        Call<String> call = iHomePageList.getListContent("0", "0", cityId,null);
 //        L.d("请求城市："+cityId);
         call.enqueue(new Callback<String>() {
             @Override
@@ -218,7 +220,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
                 Gson gson = new Gson();
                 HomePageBean bean = gson.fromJson(body, new TypeToken<HomePageBean>() {
                 }.getType());
-//                dataBeen.clear();
+                dataBeen.clear();
                 dataBeen.addAll(bean.getData());
                 adapter.notifyDataSetChanged();
                 //结束刷新状态
@@ -272,8 +274,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
                 .build();
 
         IHomePageList iHomePageList = retrofit.create(IHomePageList.class);
-        Call<String> call = iHomePageList.getListContent(String.valueOf(pageFlag)
-                , String.valueOf(buttonMore), cityId);
+        Call<String> call = iHomePageList.getMore(cityId,lastid);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -283,6 +284,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
                 Gson gson = new Gson();
                 HomePageBean bean = gson.fromJson(body, new TypeToken<HomePageBean>() {
                 }.getType());
+//                L.d("onScrollStateChanged"+);
                 dataBeen.addAll(bean.getData());
                 adapter.notifyDataSetChanged();
             }
@@ -297,8 +299,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         if (scrollState == 0 && isMore) {
-            buttonMore++;
-            L.d("onScrollStateChanged:::" + pageFlag);
+            lastid = dataBeen.get(dataBeen.size()-1).getId();
+            L.d("onScrollStateChanged:::lastid:::" + lastid);
             getMore();
         }
 
@@ -314,18 +316,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent;
-        if (position < 2){
+        if (position < listView.getHeaderViewsCount()){
             return;
         }
-        if(dataBeen.get(position-2).getType().equals("0")){
-            intent = new Intent(getActivity(), DiscoverActivity.class);
+
+        if(dataBeen.get(position-listView.getHeaderViewsCount()).getType().equals("0")){
+            intent = new Intent(getActivity(), HomeListViewDetailActivity.class);
         }else {
             intent = new Intent(getActivity(), DiscoverActivity2.class);
         }
-        L.d("Home- onItemClick::"+position);
-        String url = APIManager.BASE_URL_ZIXUN+dataBeen.get(position-2).getId()+"/";
-        intent.putExtra("url",url);
+//        L.d("Home- onItemClick::"+position);
+        String url = dataBeen.get(position-listView.getHeaderViewsCount()).getId();
+        intent.putExtra(IntentUtils.KEY_NEWSID,url);
+        String url1 = APIManager.BASE_URL_ZIXUN+dataBeen.get(position-listView.getHeaderViewsCount()).getId()+"/";
+        intent.putExtra(IntentUtils.KEY_NEWD,url1);
+        L.d("url1:"+url1);
+        L.d("fragment0::"+url);
         startActivity(intent);
-        L.d("Home- onItemClick--"+dataBeen.get(position-2).getThumbnail());
+//        L.d("Home- onItemClick--"+dataBeen.get(position-2).getThumbnail());
     }
 }

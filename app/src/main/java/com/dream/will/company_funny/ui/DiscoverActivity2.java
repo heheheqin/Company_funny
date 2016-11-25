@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dream.will.company_funny.R;
+import com.dream.will.company_funny.utils.IntentUtils;
 import com.dream.will.company_funny.utils.L;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
@@ -30,7 +31,8 @@ public class DiscoverActivity2 extends BaseNoActionBarActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover2);
         Intent intent = getIntent();
-        url = intent.getStringExtra("url");
+        url = intent.getStringExtra(IntentUtils.KEY_NEWD);
+        L.d("url1:"+url);
         initView();
     }
 

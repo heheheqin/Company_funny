@@ -6,4 +6,9 @@
     <dimen name="city_shousuo_height">55dp</dimen>
     <dimen name="city_item_height">45dp</dimen>
     <dimen name="head_text_size">20sp</dimen>
+    <!--详情中的文字大小-->
+    <dimen name="home_detail_titil">23sp</dimen>
+    <dimen name="home_detail_time">14sp</dimen>
+    <dimen name="home_detail_content">18sp</dimen>
+
 </resources>

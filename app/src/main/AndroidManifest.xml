@@ -5,9 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -34,10 +33,10 @@
         android:theme="@style/myAppTheme">
         <meta-data
             android:name="kf"
-            android:value="583581da4544cb74820019cc"></meta-data>
+            android:value="583581da4544cb74820019cc" />
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="561cae6ae0f55abd990035bf"></meta-data>
+            android:value="561cae6ae0f55abd990035bf" />
 
         <activity
             android:name=".ui.WelcomActivity"
@@ -64,7 +63,7 @@
         <activity
             android:name=".ui.DiscoverActivity2"
             android:screenOrientation="portrait"
-            android:theme="@style/myAppTheme" />
+            android:theme="@style/myAppThemenit" />
         <activity
             android:name=".ui.SaoActivity"
             android:screenOrientation="portrait" />
@@ -101,7 +100,8 @@
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.UMDefault" />
-
+        <activity android:name=".ui.HomeListViewDetailActivity" />
+        <activity android:name=".ui.Main2Activity"></activity>
     </application>
 
 </manifest>

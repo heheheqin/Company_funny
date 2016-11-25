@@ -16,6 +16,7 @@
             style="@style/title_text_style" />
     </RelativeLayout>
 
+
     <ListView
         android:id="@+id/msg_listView"
         android:layout_weight="9"

@@ -1,6 +1,7 @@
 package com.dream.will.company_funny.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dream.will.company_funny.R;
+import com.dream.will.company_funny.ui.Main2Activity;
 import com.dream.will.company_funny.utils.L;
 
 
@@ -84,6 +86,8 @@ public class GradView extends FrameLayout implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.xinfang: {
                 tmp = "xinfang";
+
+
             }
             break;
             case R.id.ershou: {tmp = "ershou";

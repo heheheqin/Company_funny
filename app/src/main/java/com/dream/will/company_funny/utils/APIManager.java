@@ -13,7 +13,11 @@ public class APIManager {
      * 主机地址
      */
     public static final String BASE_URL = "http://ikft.house.qq.com/";
+    /**
+     * 资讯网页头
+     */
     public static final String BASE_URL_ZIXUN = "http://m.house.qq.com/a/";
+
     /**
      * 选择城市
      */
@@ -32,6 +36,10 @@ public class APIManager {
      *
      */
     public static final String HOUSE_PAGE_FIRST_PAGE_LISTVIEW = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&devid=866500021200250&appname=QQHouse&mod=appkft&reqnum=20&&act=newslist&channel=71";
+    public static final String HOUSE_PAGE_FIRST_PAGE_LISTVIEN = "index.php?act=newslist&mod=appkft&devua=appkft_1080_1920_XiaomiMI4LTE_2.3_Android23&appname=QQHouse&pageflag=1&guid=867080024411583&devid=867080024411583&huid=H78973766&majorversion=v2&buttonmore=0&reqnum=20&channel=65";
+    public static final String HOUSE_PAGE_FIRST_PAGE_LISTVIEq = "index.php?act=newslist&mod=appkft&devua=appkft_1080_1920_XiaomiMI4LTE_2.3_Android23&appname=QQHouse&pageflag=1&guid=867080024411583&devid=867080024411583&huid=H78973766&majorversion=v2&buttonmore=0&reqnum=20&channel=65&city=1&lastid=HOS2016112303118502";
+
+
     /**
      * 找新房
      */
@@ -39,7 +47,7 @@ public class APIManager {
     /**
      * 资讯详情
      */
-    public static final String NEWS_DETAIL = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&devid=866500021200250&appname=QQHouse&mod=appkft&act=newsdetail&channel=71&newsid=%s";
+    public static final String NEWS_DETAIL = "index.php?guid=866500021200250&devua=appkft_1080_1920_XiaomiMI4LTE_1.8.3_Android19&devid=866500021200250&appname=QQHouse&mod=appkft&act=newsdetail&channel=71";
     /**
      * 资讯评论
      */
@@ -112,6 +120,8 @@ public class APIManager {
      * 提交验证码
      */
     public static final String POST_SMSCODE = "http://ikft.house.qq.com/index.php?guid=000000000000000&devua=appkft_1080_1776_GenymotionSamsungGalaxyS5-4.4.4-API19-1080x1920_1.8.3_Android19&smscode=%s&devid=000000000000000&appname=QQHouse&mod=appkft&act=checksms&channel=65&mobile=%s";
+
+
 
 
 

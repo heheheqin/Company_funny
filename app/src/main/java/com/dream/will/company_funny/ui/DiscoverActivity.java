@@ -48,15 +48,7 @@ public class DiscoverActivity extends BaseNoActionBarActivity implements View.On
         back.setOnClickListener(this);
         share.setOnClickListener(this);
         webView = (WebView) findViewById(R.id.webview);
-//
-//        webView.getSettings().getJavaScriptEnabled();
-//        //小视频浏览优化 保证对PC等宽页面能良好显示
-//        webView.getSettings().setUseWideViewPort(true);
-//        webView.getSettings().setLoadWithOverviewMode(true);
-//        //图片自动
-//        webView.getSettings().setLoadsImagesAutomatically(true);
         webView.canGoBack();
-//        webView.loadUrl("javascript:window.history.back();");
         webView.getSettings().setDisplayZoomControls(false);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);

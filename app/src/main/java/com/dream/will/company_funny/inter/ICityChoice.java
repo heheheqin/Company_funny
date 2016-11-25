@@ -14,3 +14,5 @@ public interface ICityChoice {
     @GET(APIManager.CHOICE_CITY)
     Call<String> getCity();
 }
+
+
