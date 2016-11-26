@@ -24,7 +24,10 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeListViewDetailActivity extends AppCompatActivity implements View.OnClickListener {
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
+public class HomeListViewDetailActivity extends SwipeBackActivity implements View.OnClickListener {
 
     String url;
     String title;
@@ -55,11 +58,18 @@ public class HomeListViewDetailActivity extends AppCompatActivity implements Vie
         }
     };
     private TextView fabaiopinglun1;
+    SwipeBackLayout swipeBackLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_list_view_detail);
+        //获取  swipeBackLayout
+        swipeBackLayout = getSwipeBackLayout();
+        //设置 互动的区域
+        swipeBackLayout.setEdgeSize(200);
+        // 设定滑动关闭的方向  下左右
+        swipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
         Intent intent = getIntent();
         url = intent.getStringExtra(IntentUtils.KEY_NEWSID);
         initData();
@@ -96,10 +106,12 @@ public class HomeListViewDetailActivity extends AppCompatActivity implements Vie
                 switch (position) {
                     case 0: {
                         action_title.setText("咨询详情");
+                        swipeBackLayout.setEnabled(true);
                     }
                     break;
                     case 1: {
                         action_title.setText("评论");
+                        swipeBackLayout.setEnabled(false);
                     }
                     break;
                 }

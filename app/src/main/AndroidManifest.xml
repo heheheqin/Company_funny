@@ -100,8 +100,11 @@
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.UMDefault" />
-        <activity android:name=".ui.HomeListViewDetailActivity" />
-        <activity android:name=".ui.Main2Activity"></activity>
+        <!--主页详情-->
+        <activity android:name=".ui.HomeListViewDetailActivity"
+            android:theme="@style/myAppThemeSwipe"/>
+        <!--测试viewdragLayout-->
+        <activity android:name=".ui.Main2Activity"/>
     </application>
 
 </manifest>

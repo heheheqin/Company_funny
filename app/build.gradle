@@ -53,4 +53,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'cn.yipianfengye.android:zxing-library:2.1'
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
 }

@@ -1,5 +1,6 @@
 package com.dream.will.company_funny.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.dream.will.company_funny.R;
 import com.dream.will.company_funny.adapter.MineListAdapter;
 import com.dream.will.company_funny.adapter.MineListAdapterC;
 import com.dream.will.company_funny.bean.MineListBean;
+import com.dream.will.company_funny.ui.Main2Activity;
 import com.dream.will.company_funny.utils.L;
 
 import java.util.ArrayList;
@@ -80,6 +82,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 loginTO();
+                Intent intent = new Intent(getActivity(), Main2Activity.class);
+                startActivity(intent);
             }
         });
     }
