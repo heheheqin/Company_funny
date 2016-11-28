@@ -18,6 +18,12 @@ import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
 
+/**
+ * 1。全屏显示viewPager
+ * 2。每个fragment中 每个image动画速度不一样
+ * 3。滑动到最后一个fragment之后 继续滑动 进入城市选择界面
+ * 4.viewpager需要有指示器
+ */
 public class SplashActivity extends AppCompatActivity {
 
     List<Fragment> fragments;
@@ -131,9 +137,7 @@ public class SplashActivity extends AppCompatActivity {
             float transx = page.getWidth() * position;
             for (int i = 0; i < viewId.length; i++) {
                 View view = page.findViewById(viewId[i]);
-                L.d("position=" + position);
                 if (view != null) {
-                    L.d("view===");
                     view.setTranslationX(transx);
                 }
                 transx *= 4f;

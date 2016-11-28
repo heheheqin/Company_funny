@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageView saoma = (ImageView) view.findViewById(R.id.sao);
+        listView = (ListView) view.findViewById(R.id.home_listView);
         saoma.setOnClickListener(this);
         initRefresh(view);
     }
@@ -126,7 +127,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         localChoice = (TextView) view.findViewById(R.id.local);
-        listView = (ListView) view.findViewById(R.id.home_listView);
+
         gradView = new GradView(getActivity());
         localChoice.setOnClickListener(this);
 

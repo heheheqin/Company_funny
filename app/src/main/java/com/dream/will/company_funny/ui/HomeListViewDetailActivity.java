@@ -106,12 +106,12 @@ public class HomeListViewDetailActivity extends SwipeBackActivity implements Vie
                 switch (position) {
                     case 0: {
                         action_title.setText("咨询详情");
-                        swipeBackLayout.setEnabled(true);
+                        setSwipeBackEnable(true);
                     }
                     break;
                     case 1: {
                         action_title.setText("评论");
-                        swipeBackLayout.setEnabled(false);
+                        setSwipeBackEnable(false);
                     }
                     break;
                 }

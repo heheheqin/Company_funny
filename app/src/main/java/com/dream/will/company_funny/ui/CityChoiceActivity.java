@@ -42,6 +42,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
+/**
+ * 1。自定义侧滑选择快速选择字母控件、显示控件
+ * 2。带头部悬停功能 listView StickyListHeadersListView
+ * 3。快捷城市搜索功能
+ * 4。右上角取消按钮 如果正在查询退出查询，如果不在查询退出activity
+ */
 public class CityChoiceActivity extends BaseNoActionBarActivity implements SlideView.SlideClickCallback,AdapterView.OnItemClickListener {
 
     private static final int YES = 419;

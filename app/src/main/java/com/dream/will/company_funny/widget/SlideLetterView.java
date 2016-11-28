@@ -13,6 +13,9 @@ import com.dream.will.company_funny.R;
 /**
  * Author：Will on 2016/11/22 16:04
  * Mail：heheheqin.will@gmail.com
+ *
+ *
+ * 字母显示
  */
 
 public class SlideLetterView extends View {

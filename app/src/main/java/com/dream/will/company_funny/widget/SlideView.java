@@ -15,6 +15,7 @@ import com.dream.will.company_funny.utils.L;
 /**
  * Author：Will on 2016/11/22 14:13
  * Mail：heheheqin.will@gmail.com
+ * 字母选择
  */
 
 public class SlideView extends View {
@@ -22,7 +23,9 @@ public class SlideView extends View {
     SlideClickCallback slideClickCallback;
     //定义点击回调接口
     public  interface  SlideClickCallback{
+            //回传点击位置和字母
           void  slideOnClick(int position, String str);
+            //手抬起时候调用
           void  slideUp();
     }
 
@@ -81,12 +84,11 @@ public class SlideView extends View {
                 return size;
             }
             case MeasureSpec.AT_MOST: {
-                //宽度是测量宽度  高度是所有文本测量之和
+                //宽度是测量宽度  高度是父控件大小
                 if (type == 1) { //宽
                     return (int) textW + getPaddingRight() + getPaddingLeft();
                 } else {
                     return size;
-//                    return (int) (lette.length * textH) + getPaddingTop() + getPaddingBottom();
                 }
             }
         }
@@ -103,15 +105,15 @@ public class SlideView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN: {
+            case MotionEvent.ACTION_DOWN: { //按下
                 eventLable(event.getY());
             }
             break;
-            case MotionEvent.ACTION_MOVE: {
+            case MotionEvent.ACTION_MOVE: { //移动
                 eventLable(event.getY());
             }
             break;
-            case MotionEvent.ACTION_UP: {
+            case MotionEvent.ACTION_UP: { //抬起
                 if (slideClickCallback != null){
                     slideClickCallback.slideUp();
                     invalidate();
