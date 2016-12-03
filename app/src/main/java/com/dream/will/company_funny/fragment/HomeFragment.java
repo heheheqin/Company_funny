@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -120,7 +121,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener, AbsL
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
                 return super.checkCanDoRefresh(frame, content, header);
             }
+
         });
+        //解决 banner左右滑动冲突
+        refresh.disableWhenHorizontalMove(true);
     }
 
     @Override
